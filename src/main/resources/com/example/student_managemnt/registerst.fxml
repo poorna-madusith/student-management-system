@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="501.0" prefWidth="795.0" style="-fx-background-color: #595656; -fx-border-color: #fa8b02; -fx-border-width: 5;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.student_managemnt.controller">
+   <children>
+      <ImageView fitHeight="501.0" fitWidth="795.0" layoutX="7.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@blue-and-orange-background-zv7dpby3moqrv3uq.jpg" />
+         </image>
+      </ImageView>
+      <Text fill="WHITE" layoutX="273.0" layoutY="62.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Register a Student" textAlignment="CENTER" underline="true">
+         <font>
+            <Font name="Bodoni MT Bold" size="35.0" />
+         </font>
+      </Text>
+      <Text fill="#fcf9f9" layoutX="185.0" layoutY="205.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name:">
+         <font>
+            <Font name="Times New Roman Bold" size="26.0" />
+         </font>
+      </Text>
+      <TextField fx:id="nameField" layoutX="276.0" layoutY="184.0" prefHeight="20.0" prefWidth="498.0" style="-fx-background-color: white;" />
+      <Text fill="#f7f5f5" layoutX="209.0" layoutY="251.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Age:">
+         <font>
+            <Font name="Times New Roman Bold" size="25.0" />
+         </font>
+      </Text>
+      <TextField fx:id="ageField" layoutX="276.0" layoutY="229.0" prefHeight="26.0" prefWidth="204.0" style="-fx-background-color: white;" />
+      <Text fill="#f7f5f5" layoutX="174.0" layoutY="295.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Course:">
+         <font>
+            <Font name="Times New Roman Bold" size="25.0" />
+         </font>
+      </Text>
+      <Button layoutX="273.0" layoutY="413.0" mnemonicParsing="false" onAction="#saveStudent" prefHeight="38.0" prefWidth="247.0" style="-fx-background-radius: 20; -fx-background-color: #fa8b02;" text="Register The Student">
+         <font>
+            <Font name="Times New Roman Bold" size="19.0" />
+         </font>
+      </Button>
+      <Text fill="#f7f5f5" layoutX="133.0" layoutY="337.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Student ID:">
+         <font>
+            <Font name="Times New Roman Bold" size="25.0" />
+         </font>
+      </Text>
+      <TextField fx:id="idField" layoutX="276.0" layoutY="315.0" prefHeight="26.0" prefWidth="204.0" promptText="ex: 412345678" style="-fx-background-color: white;" />
+      <ImageView fx:id="imageView" fitHeight="29.0" fitWidth="65.0" layoutX="31.0" layoutY="36.0" onMouseClicked="#handleImageClick" onMouseEntered="#handleMouseEntered" onMouseExited="#handleMouseExited" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@490-4905146_back-button-png-orange-png-download-transparent-png-removebg-preview.png" />
+         </image>
+      </ImageView>
+      <ChoiceBox fx:id="courseField" layoutX="276.0" layoutY="272.0" prefHeight="28.0" prefWidth="204.0" />
+   </children>
+</AnchorPane>

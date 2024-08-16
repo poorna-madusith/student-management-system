@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="501.0" prefWidth="795.0" style="-fx-background-color: #595656; -fx-border-color: #fa8b02; -fx-border-width: 5;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.student_managemnt.EditController">
+   <children>
+      <ImageView fitHeight="501.0" fitWidth="795.0" layoutX="7.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@blue-and-orange-background-zv7dpby3moqrv3uq.jpg" />
+         </image>
+      </ImageView>
+      <Text fill="WHITE" layoutX="321.0" layoutY="61.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Edit Details" textAlignment="CENTER" underline="true">
+         <font>
+            <Font name="Bodoni MT Bold" size="35.0" />
+         </font>
+      </Text>
+      <Text fill="#fcf9f9" layoutX="178.0" layoutY="156.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name:">
+         <font>
+            <Font name="Times New Roman Bold" size="26.0" />
+         </font>
+      </Text>
+      <TextField fx:id="nameField" layoutX="267.0" layoutY="134.0" prefHeight="20.0" prefWidth="498.0" style="-fx-background-color: white;" />
+      <Text fill="#f7f5f5" layoutX="202.0" layoutY="194.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Age:">
+         <font>
+            <Font name="Times New Roman Bold" size="25.0" />
+         </font>
+      </Text>
+      <TextField fx:id="ageField" layoutX="268.0" layoutY="173.0" prefHeight="26.0" prefWidth="204.0" style="-fx-background-color: white;" />
+      <Text fill="#f7f5f5" layoutX="167.0" layoutY="232.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Course:">
+         <font>
+            <Font name="Times New Roman Bold" size="25.0" />
+         </font>
+      </Text>
+      <Button layoutX="341.0" layoutY="432.0" mnemonicParsing="false" onAction="#submitStudentChanges" prefHeight="38.0" prefWidth="126.0" style="-fx-background-radius: 20; -fx-background-color: #fa8b02;" text="Submit">
+         <font>
+            <Font name="Times New Roman Bold" size="19.0" />
+         </font>
+      </Button>
+      <ChoiceBox fx:id="courseField" layoutX="267.0" layoutY="210.0" prefHeight="28.0" prefWidth="204.0" />
+      <Text fill="#f7f5f5" layoutX="68.0" layoutY="310.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Module 1 marks:">
+         <font>
+            <Font name="Times New Roman Bold" size="25.0" />
+         </font>
+      </Text>
+      <TextField fx:id="module1Field" layoutX="268.0" layoutY="289.0" prefHeight="26.0" prefWidth="204.0" style="-fx-background-color: white;" />
+      <Text fill="#f7f5f5" layoutX="69.0" layoutY="353.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Module 2 marks:">
+         <font>
+            <Font name="Times New Roman Bold" size="25.0" />
+         </font>
+      </Text>
+      <TextField fx:id="module2Field" layoutX="268.0" layoutY="332.0" prefHeight="26.0" prefWidth="204.0" style="-fx-background-color: white;" />
+      <Text fill="#f7f5f5" layoutX="67.0" layoutY="396.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Module 3 marks:">
+         <font>
+            <Font name="Times New Roman Bold" size="25.0" />
+         </font>
+      </Text>
+      <TextField fx:id="module3Field" layoutX="269.0" layoutY="375.0" prefHeight="26.0" prefWidth="204.0" style="-fx-background-color: white;" />
+      <ListView fx:id="editStudentDetailsList" layoutX="507.0" layoutY="235.0" prefHeight="202.0" prefWidth="271.0" style="-fx-background-color: black; -fx-border-color: orange; -fx-border-width: 5;" />
+      <ImageView fx:id="imageView2" fitHeight="29.0" fitWidth="65.0" layoutX="51.0" layoutY="42.0" onMouseClicked="#handleImageClick2" onMouseEntered="#handleMouseEntered" onMouseExited="#handleMouseExited" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@490-4905146_back-button-png-orange-png-download-transparent-png-removebg-preview.png" />
+         </image>
+      </ImageView>
+      <Text fill="#f7f5f5" layoutX="552.0" layoutY="218.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Current Details" wrappingWidth="169.0869140625">
+         <font>
+            <Font name="Times New Roman Bold" size="25.0" />
+         </font>
+      </Text>
+   </children>
+</AnchorPane>
