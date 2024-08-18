@@ -31,7 +31,7 @@
             <Font name="Times New Roman Bold" size="19.0" />
          </font>
       </Button>
-      <Button layoutX="283.0" layoutY="269.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="247.0" style="-fx-background-radius: 20; -fx-background-color: #fa8b02;" text="Find a student">
+      <Button layoutX="283.0" layoutY="269.0" mnemonicParsing="false" onAction="#option4" prefHeight="38.0" prefWidth="247.0" style="-fx-background-radius: 20; -fx-background-color: #fa8b02;" text="Find a student">
          <font>
             <Font name="Times New Roman Bold" size="19.0" />
          </font>

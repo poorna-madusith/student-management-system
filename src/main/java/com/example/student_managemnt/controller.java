@@ -120,14 +120,15 @@ public class controller {
         stage.setScene(scene);
         stage.show();
     }
-
-    public void option3_1(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("edit.fxml"));
+    public void option4(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("searchst.fxml"));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
     }
+
+
 
     public void saveStudent(ActionEvent event) {
         String name = nameField.getText().trim();
