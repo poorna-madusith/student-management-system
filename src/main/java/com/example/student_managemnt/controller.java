@@ -1,6 +1,9 @@
 package com.example.student_managemnt;
 
+import com.example.student_managemnt.DatabaseConnection;
 import javafx.animation.ScaleTransition;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -10,7 +13,10 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import javafx.util.Duration;
@@ -42,6 +48,23 @@ public class controller {
     private ListView<String> studentDetailsList;
     @FXML
     private ImageView imageView;
+
+    @FXML
+    private TableView<Student> studentTable;
+    @FXML
+    private TableColumn<Student, String> nameColumn;
+    @FXML
+    private TableColumn<Student, Integer> ageColumn;
+    @FXML
+    private TableColumn<Student, String> idColumn;
+    @FXML
+    private TableColumn<Student, String> courseColumn;
+    @FXML
+    private TableColumn<Student, Integer> module1Column;
+    @FXML
+    private TableColumn<Student, Integer> module2Column;
+    @FXML
+    private TableColumn<Student, Integer> module3Column;
 
     @FXML
     public void initialize() {
@@ -120,6 +143,7 @@ public class controller {
         stage.setScene(scene);
         stage.show();
     }
+
     public void option4(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("searchst.fxml"));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -127,6 +151,7 @@ public class controller {
         stage.setScene(scene);
         stage.show();
     }
+
     public void option5(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("modulemarks.fxml"));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -134,8 +159,6 @@ public class controller {
         stage.setScene(scene);
         stage.show();
     }
-
-
 
     public void saveStudent(ActionEvent event) {
         String name = nameField.getText().trim();
@@ -190,12 +213,11 @@ public class controller {
             ageField.clear();
             courseField.setValue("Computer Science");  // Reset to default value
 
-            showAlert("Successfull","Student Registered Successfully");
+            showAlert("Successful", "Student Registered Successfully");
 
         } catch (SQLException e) {
             System.out.println(e.getMessage());
-
-            showAlert2("Error","Registration Failed");
+            showAlert2("Error", "Registration Failed");
         }
     }
 
@@ -233,8 +255,6 @@ public class controller {
         }
     }
 
-
-
     @FXML
     public void removeStudent(ActionEvent event) {
         String studentId = removeIdField.getText().trim();
@@ -252,14 +272,14 @@ public class controller {
             int rowsAffected = pstmt.executeUpdate();
 
             if (rowsAffected > 0) {
-                showAlert("Success", "Student with ID " + studentId + " has been removed.");
-                studentDetailsList.getItems().clear();
+                showAlert("Success", "Student with ID: " + studentId + " has been removed.");
+                removeIdField.clear();
             } else {
                 showAlert2("No Record Found", "No student found with ID: " + studentId);
             }
         } catch (SQLException e) {
             System.out.println(e.getMessage());
-            showAlert2("Database Error", "Failed to remove student.");
+            showAlert2("Database Error", "Failed to remove student data.");
         }
     }
 
@@ -295,28 +315,89 @@ public class controller {
 
 
 
-    private boolean validateInput(String name, String studentId, String ageText) {
-        // Validate name: no numbers or symbols
+    public void switchToListScene(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("studentlist.fxml"));
+        Parent root = loader.load();
+
+        controller controller = loader.getController();
+        controller.loadStudentData();  // Populate the TableView with data
+
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    private void loadStudentData() {
+        ObservableList<Student> studentList = FXCollections.observableArrayList();
+
+        String sql = "SELECT * FROM st_details";
+        try (Connection conn = DatabaseConnection.connect();
+             PreparedStatement pstmt = conn.prepareStatement(sql);
+             ResultSet rs = pstmt.executeQuery()) {
+
+            while (rs.next()) {
+                Student student = new Student(rs.getString("name"), rs.getString("id"),
+                        rs.getInt("age"), rs.getString("course"),
+                        rs.getInt("module_1"), rs.getInt("module_2"), rs.getInt("module_3"));
+                studentList.add(student);
+            }
+
+            // Set up the columns in the table
+            nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
+            idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
+            ageColumn.setCellValueFactory(new PropertyValueFactory<>("age"));
+            courseColumn.setCellValueFactory(new PropertyValueFactory<>("course"));
+            module1Column.setCellValueFactory(new PropertyValueFactory<>("module1"));
+            module2Column.setCellValueFactory(new PropertyValueFactory<>("module2"));
+            module3Column.setCellValueFactory(new PropertyValueFactory<>("module3"));
+
+            studentTable.setItems(studentList);
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            showAlert2("Database Error", "Failed to load student data.");
+        }
+    }
+
+    private void showAlert(String title, String message) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
+
+    private void showAlert2(String title, String message) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
+
+    private boolean validateInput(String name, String id, String ageText) {
+        // Validate name
         if (!name.matches("[a-zA-Z ]+")) {
-            showAlert2("Invalid Name", "Name cannot contain numbers or symbols.");
+            showAlert2("Invalid Input", "Name must not contain numbers or symbols.");
             return false;
         }
 
-        // Validate studentId: no symbols
-        if (!studentId.matches("[a-zA-Z0-9]+")) {
-            showAlert2("Invalid ID", "ID cannot contain symbols.");
+        // Validate ID
+        if (!id.matches("\\d{8}")) {
+            showAlert2("Invalid Input", "ID must be an 8-digit number.");
             return false;
         }
 
-        // Validate age: must be a number and less than 25
-        if (!ageText.matches("\\d+")) {
-            showAlert2("Invalid Age", "Age must be a number.");
-            return false;
-        }
-
-        int age = Integer.parseInt(ageText);
-        if (age >= 25) {
-            showAlert2("Invalid Age", "Age must be less than 25.");
+        // Validate age
+        try {
+            int age = Integer.parseInt(ageText);
+            if (age >= 25) {
+                showAlert2("Invalid Input", "Age must be less than 25.");
+                return false;
+            }
+        } catch (NumberFormatException e) {
+            showAlert2("Invalid Input", "Age must be a valid number.");
             return false;
         }
 
@@ -324,31 +405,16 @@ public class controller {
     }
 
     private int getStudentCount() {
-        int count = 0;
         String sql = "SELECT COUNT(*) FROM st_details";
         try (Connection conn = DatabaseConnection.connect();
              PreparedStatement pstmt = conn.prepareStatement(sql);
              ResultSet rs = pstmt.executeQuery()) {
             if (rs.next()) {
-                count = rs.getInt(1);
+                return rs.getInt(1);
             }
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
-        return count;
-    }
-
-    private void showAlert(String title, String content) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle(title);
-        alert.setHeaderText(null);
-        alert.setContentText(content);
-        alert.showAndWait();
-    }private void showAlert2(String title, String content) {
-        Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.setTitle(title);
-        alert.setHeaderText(null);
-        alert.setContentText(content);
-        alert.showAndWait();
+        return 0;
     }
 }

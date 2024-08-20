@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="501.0" prefWidth="795.0" style="-fx-background-color: #595656; -fx-border-color: #fa8b02; -fx-border-width: 5;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.student_managemnt.controller">
+   <children>
+      <ImageView fitHeight="501.0" fitWidth="795.0" layoutX="8.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@blue-and-orange-background-zv7dpby3moqrv3uq.jpg" />
+         </image>
+      </ImageView>
+      <Text fill="WHITE" layoutX="325.0" layoutY="71.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Student List" textAlignment="CENTER" underline="true">
+         <font>
+            <Font name="Bodoni MT Bold" size="35.0" />
+         </font>
+      </Text>
+      <ImageView fx:id="imageView" fitHeight="29.0" fitWidth="65.0" layoutX="41.0" layoutY="46.0" onMouseClicked="#handleImageClick" onMouseEntered="#handleMouseEntered" onMouseExited="#handleMouseExited" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@490-4905146_back-button-png-orange-png-download-transparent-png-removebg-preview.png" />
+         </image>
+      </ImageView>
+      <TableView fx:id="studentTable" layoutX="19.0" layoutY="92.0" prefHeight="404.0" prefWidth="774.0" style="-fx-background-color: black; -fx-border-color: white;">
+        <columns>
+          <TableColumn fx:id="nameColumn" prefWidth="228.80001258850098" style="-fx-background-color: orange;" text="Name" />
+          <TableColumn fx:id="ageColumn" minWidth="0.0" prefWidth="58.39996337890625" style="-fx-background-color: orange;" text="Age" />
+            <TableColumn fx:id="idColumn" minWidth="0.0" prefWidth="135.20001220703125" style="-fx-background-color: orange;" text="Studnet ID" />
+            <TableColumn fx:id="courseColumn" prefWidth="167.19998168945312" style="-fx-background-color: orange;" text="Course" />
+            <TableColumn fx:id="module1Column" prefWidth="59.19989013671875" style="-fx-background-color: orange;" text="Module1" />
+            <TableColumn fx:id="module2Column" minWidth="0.0" prefWidth="55.2000732421875" style="-fx-background-color: orange;" text="Module2" />
+            <TableColumn fx:id="module3Column" prefWidth="62.39990234375" style="-fx-background-color: orange;" text="Module3" />
+        </columns>
+      </TableView>
+   </children>
+</AnchorPane>

@@ -20,7 +20,7 @@
             <Font name="Bell MT Bold" size="41.0" />
          </font>
       </Text>
-      <Rectangle arcHeight="50.0" arcWidth="50.0" blendMode="SOFT_LIGHT" fill="WHITE" height="398.0" layoutX="184.0" layoutY="89.0" opacity="0.62" stroke="WHITE" strokeType="INSIDE" width="445.0" />
+      <Rectangle arcHeight="50.0" arcWidth="50.0" blendMode="OVERLAY" fill="#463434" height="398.0" layoutX="184.0" layoutY="89.0" stroke="WHITE" strokeType="INSIDE" width="445.0" />
       <Button layoutX="283.0" layoutY="113.0" mnemonicParsing="false" onAction="#option1" prefHeight="38.0" prefWidth="247.0" style="-fx-background-radius: 20; -fx-background-color: #fa8b02;" text="Check available seats">
          <font>
             <Font name="Times New Roman Bold" size="19.0" />
@@ -36,7 +36,7 @@
             <Font name="Times New Roman Bold" size="19.0" />
          </font>
       </Button>
-      <Button layoutX="283.0" layoutY="374.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="247.0" style="-fx-background-radius: 20; -fx-background-color: #fa8b02;" text="View student list">
+      <Button layoutX="283.0" layoutY="374.0" mnemonicParsing="false" onAction="#switchToListScene" prefHeight="38.0" prefWidth="247.0" style="-fx-background-radius: 20; -fx-background-color: #fa8b02;" text="View student list">
          <font>
             <Font name="Times New Roman Bold" size="19.0" />
          </font>
