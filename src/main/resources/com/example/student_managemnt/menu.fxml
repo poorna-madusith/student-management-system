@@ -41,7 +41,7 @@
             <Font name="Times New Roman Bold" size="19.0" />
          </font>
       </Button>
-      <Button layoutX="282.0" layoutY="319.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="247.0" style="-fx-background-radius: 20; -fx-background-color: #fa8b02;" text="Module marks">
+      <Button layoutX="282.0" layoutY="319.0" mnemonicParsing="false" onAction="#option5" prefHeight="38.0" prefWidth="247.0" style="-fx-background-radius: 20; -fx-background-color: #fa8b02;" text="Module marks">
          <font>
             <Font name="Times New Roman Bold" size="19.0" />
          </font>

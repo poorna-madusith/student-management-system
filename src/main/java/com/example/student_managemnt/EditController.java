@@ -91,7 +91,7 @@ public class EditController {
         String module3Text = module3Field.getText().trim();
 
         if (name.isEmpty() || ageText.isEmpty() || course == null || module1Text.isEmpty() || module2Text.isEmpty() || module3Text.isEmpty()) {
-            showAlert("Missing Information", "Please fill in all fields.");
+            showAlert2("Missing Information", "Please fill in all fields.");
             return;
         }
 
@@ -134,28 +134,29 @@ public class EditController {
 
         } catch (SQLException e) {
             System.out.println(e.getMessage());
-            showAlert("Database Error", "Failed to update student details.");
+            showAlert2("Database Error", "Failed to update student details.");
         }
     }
 
+
     private boolean validateInput(String name, String ageText, String module1Text, String module2Text, String module3Text) {
         if (!name.matches("[a-zA-Z ]+")) {
-            showAlert("Invalid Name", "Name should contain only letters and spaces.");
+            showAlert2("Invalid Name", "Name should contain only letters and spaces.");
             return false;
         }
 
         if (!ageText.matches("\\d+")) {
-            showAlert("Invalid Age", "Age should be a valid number.");
+            showAlert2("Invalid Age", "Age should be a valid number.");
             return false;
         }
         int age = Integer.parseInt(ageText);
         if (age >= 25) {
-            showAlert("Invalid Age", "Age must be less than 25.");
+            showAlert2("Invalid Age", "Age must be less than 25.");
             return false;
         }
 
         if (!module1Text.matches("\\d+") || !module2Text.matches("\\d+") || !module3Text.matches("\\d+")) {
-            showAlert("Invalid Marks", "Module marks should be valid numbers.");
+            showAlert2("Invalid Marks", "Module marks should be valid numbers.");
             return false;
         }
 
@@ -174,6 +175,13 @@ public class EditController {
 
     private void showAlert(String title, String content) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(content);
+        alert.showAndWait();
+    }
+    private void showAlert2(String title, String content) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle(title);
         alert.setHeaderText(null);
         alert.setContentText(content);

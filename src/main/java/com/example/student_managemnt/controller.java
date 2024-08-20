@@ -127,6 +127,13 @@ public class controller {
         stage.setScene(scene);
         stage.show();
     }
+    public void option5(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("modulemarks.fxml"));
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
 
 
 
@@ -138,7 +145,7 @@ public class controller {
 
         // Check if any field is empty
         if (name.isEmpty() || studentId.isEmpty() || ageText.isEmpty() || course == null) {
-            showAlert("Missing Information", "Please fill in all fields.");
+            showAlert2("Missing Information", "Please fill in all fields.");
             return;
         }
 
@@ -150,7 +157,7 @@ public class controller {
         int age = Integer.parseInt(ageText);
 
         if (getStudentCount() >= studentCapacity) {
-            showAlert("Registration Error", "You have reached the maximum number of students registered.");
+            showAlert2("Registration Error", "You have reached the maximum number of students registered.");
             return;
         }
 
@@ -166,7 +173,7 @@ public class controller {
                 ResultSet rs = checkIdStmt.executeQuery();
                 rs.next();
                 if (rs.getInt(1) > 0) {
-                    showAlert("Duplicate ID", "This ID is already registered.");
+                    showAlert2("Duplicate ID", "This ID is already registered.");
                     return;
                 }
             }
@@ -183,20 +190,12 @@ public class controller {
             ageField.clear();
             courseField.setValue("Computer Science");  // Reset to default value
 
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Success");
-            alert.setHeaderText(null);
-            alert.setContentText("Student data saved successfully!");
-            alert.showAndWait();
+            showAlert("Successfull","Student Registered Successfully");
 
         } catch (SQLException e) {
             System.out.println(e.getMessage());
 
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Error");
-            alert.setHeaderText(null);
-            alert.setContentText("Failed to save student data.");
-            alert.showAndWait();
+            showAlert2("Error","Registration Failed");
         }
     }
 
@@ -205,7 +204,7 @@ public class controller {
         String studentId = removeIdField.getText().trim();
 
         if (studentId.isEmpty()) {
-            showAlert("Missing Information", "Please enter a student ID.");
+            showAlert2("Missing Information", "Please enter a student ID.");
             return;
         }
 
@@ -226,20 +225,22 @@ public class controller {
                 studentDetailsList.getItems().add("Module 2: " + rs.getInt("module_2"));
                 studentDetailsList.getItems().add("Module 3: " + rs.getInt("module_3"));
             } else {
-                showAlert("No Record Found", "No student found with ID: " + studentId);
+                showAlert2("No Record Found", "No student found with ID: " + studentId);
             }
         } catch (SQLException e) {
             System.out.println(e.getMessage());
-            showAlert("Database Error", "Failed to search for student data.");
+            showAlert2("Database Error", "Failed to search for student data.");
         }
     }
+
+
 
     @FXML
     public void removeStudent(ActionEvent event) {
         String studentId = removeIdField.getText().trim();
 
         if (studentId.isEmpty()) {
-            showAlert("Missing Information", "Please enter a student ID.");
+            showAlert2("Missing Information", "Please enter a student ID.");
             return;
         }
 
@@ -254,11 +255,11 @@ public class controller {
                 showAlert("Success", "Student with ID " + studentId + " has been removed.");
                 studentDetailsList.getItems().clear();
             } else {
-                showAlert("No Record Found", "No student found with ID: " + studentId);
+                showAlert2("No Record Found", "No student found with ID: " + studentId);
             }
         } catch (SQLException e) {
             System.out.println(e.getMessage());
-            showAlert("Database Error", "Failed to remove student.");
+            showAlert2("Database Error", "Failed to remove student.");
         }
     }
 
@@ -266,12 +267,12 @@ public class controller {
         String studentId = removeIdField.getText().trim();
 
         if (studentId.isEmpty()) {
-            showAlert("Missing Information", "Please enter a student ID.");
+            showAlert2("Missing Information", "Please enter a student ID.");
             return;
         }
 
         if (studentDetailsList.getItems().isEmpty()) {
-            showAlert("No Data", "Please search for a student first.");
+            showAlert2("No Data", "Please search for a student first.");
             return;
         }
 
@@ -292,28 +293,30 @@ public class controller {
     }
 
 
+
+
     private boolean validateInput(String name, String studentId, String ageText) {
         // Validate name: no numbers or symbols
         if (!name.matches("[a-zA-Z ]+")) {
-            showAlert("Invalid Name", "Name cannot contain numbers or symbols.");
+            showAlert2("Invalid Name", "Name cannot contain numbers or symbols.");
             return false;
         }
 
         // Validate studentId: no symbols
         if (!studentId.matches("[a-zA-Z0-9]+")) {
-            showAlert("Invalid ID", "ID cannot contain symbols.");
+            showAlert2("Invalid ID", "ID cannot contain symbols.");
             return false;
         }
 
         // Validate age: must be a number and less than 25
         if (!ageText.matches("\\d+")) {
-            showAlert("Invalid Age", "Age must be a number.");
+            showAlert2("Invalid Age", "Age must be a number.");
             return false;
         }
 
         int age = Integer.parseInt(ageText);
         if (age >= 25) {
-            showAlert("Invalid Age", "Age must be less than 25.");
+            showAlert2("Invalid Age", "Age must be less than 25.");
             return false;
         }
 
@@ -337,6 +340,12 @@ public class controller {
 
     private void showAlert(String title, String content) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(content);
+        alert.showAndWait();
+    }private void showAlert2(String title, String content) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle(title);
         alert.setHeaderText(null);
         alert.setContentText(content);

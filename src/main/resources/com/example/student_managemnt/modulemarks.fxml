@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="501.0" prefWidth="795.0" style="-fx-background-color: #595656; -fx-border-color: #fa8b02; -fx-border-width: 5;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.student_managemnt.ModuleMarksController">
+   <children>
+      <ImageView fitHeight="501.0" fitWidth="795.0" layoutX="8.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@blue-and-orange-background-zv7dpby3moqrv3uq.jpg" />
+         </image>
+      </ImageView>
+      <Text fill="WHITE" layoutX="278.0" layoutY="71.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Add Module Marks" textAlignment="CENTER" underline="true">
+         <font>
+            <Font name="Bodoni MT Bold" size="35.0" />
+         </font>
+      </Text>
+      <Rectangle arcHeight="50.0" arcWidth="50.0" blendMode="OVERLAY" fill="#101010" height="398.0" layoutX="192.0" layoutY="96.0" opacity="0.98" stroke="WHITE" strokeType="INSIDE" width="445.0" />
+      <TextField fx:id="studentIdField" layoutX="313.0" layoutY="143.0" prefHeight="26.0" prefWidth="222.0" />
+      <Text fill="#fcf9f9" layoutX="360.0" layoutY="131.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Enter Stundet ID" wrappingWidth="111.33078002929688">
+         <font>
+            <Font name="Times New Roman Bold" size="15.0" />
+         </font>
+      </Text>
+      <Button layoutX="367.0" layoutY="434.0" mnemonicParsing="false" onAction="#handleSubmit" prefHeight="42.0" prefWidth="98.0" style="-fx-background-radius: 20; -fx-background-color: #fa8b02;" text="Submit">
+         <font>
+            <Font name="Times New Roman Bold" size="19.0" />
+         </font>
+      </Button>
+      <TextField fx:id="module1Field" layoutX="313.0" layoutY="242.0" prefHeight="26.0" prefWidth="222.0" />
+      <Text fill="#fcf9f9" layoutX="360.0" layoutY="230.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Module 1 Marks" wrappingWidth="111.33078002929688">
+         <font>
+            <Font name="Times New Roman Bold" size="15.0" />
+         </font>
+      </Text>
+      <TextField fx:id="module2Field" layoutX="313.0" layoutY="307.0" prefHeight="26.0" prefWidth="222.0" />
+      <Text fill="#fcf9f9" layoutX="360.0" layoutY="295.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Module 2 Marks" wrappingWidth="111.33078002929688">
+         <font>
+            <Font name="Times New Roman Bold" size="15.0" />
+         </font>
+      </Text>
+      <TextField fx:id="module3Field" layoutX="313.0" layoutY="379.0" prefHeight="26.0" prefWidth="222.0" />
+      <Text fill="#fcf9f9" layoutX="360.0" layoutY="367.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mdoule 3 Marks" wrappingWidth="111.33078002929688">
+         <font>
+            <Font name="Times New Roman Bold" size="15.0" />
+         </font>
+      </Text>
+      <ImageView fx:id="imageView" fitHeight="29.0" fitWidth="65.0" layoutX="52.0" layoutY="45.0" onMouseClicked="#handleImageClick" onMouseEntered="#handleMouseEntered" onMouseExited="#handleMouseExited" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@490-4905146_back-button-png-orange-png-download-transparent-png-removebg-preview.png" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>
