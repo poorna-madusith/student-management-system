@@ -2,6 +2,7 @@ package com.example.student_managemnt;
 
 import com.example.student_managemnt.DatabaseConnection;
 import javafx.animation.ScaleTransition;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -224,6 +225,7 @@ public class controller {
     @FXML
     public void searchStudent(ActionEvent event) {
         String studentId = removeIdField.getText().trim();
+        int average;
 
         if (studentId.isEmpty()) {
             showAlert2("Missing Information", "Please enter a student ID.");
@@ -246,6 +248,18 @@ public class controller {
                 studentDetailsList.getItems().add("Module 1: " + rs.getInt("module_1"));
                 studentDetailsList.getItems().add("Module 2: " + rs.getInt("module_2"));
                 studentDetailsList.getItems().add("Module 3: " + rs.getInt("module_3"));
+                average = (rs.getInt("module_1")+rs.getInt("module_2")+rs.getInt("module_3"))/3;
+                studentDetailsList.getItems().add("Average: " + average);
+                if (average>=80){
+                    studentDetailsList.getItems().add("Grade: Distinction");
+                }else if(average>=70){
+                    studentDetailsList.getItems().add("Grade: Merit");
+                }else if(average>=40){
+                    studentDetailsList.getItems().add("Grade: Pass");
+                }else{
+                    studentDetailsList.getItems().add("Grade: Fail");
+                }
+
             } else {
                 showAlert2("No Record Found", "No student found with ID: " + studentId);
             }
@@ -416,5 +430,9 @@ public class controller {
             System.out.println(e.getMessage());
         }
         return 0;
+    }
+    @FXML
+    private void Exit(ActionEvent event) {
+        Platform.exit();
     }
 }

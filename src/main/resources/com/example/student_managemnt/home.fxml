@@ -24,7 +24,7 @@
             <Font name="Bodoni MT Bold" size="36.0" />
          </font>
       </Text>
-      <Text fill="WHITE" layoutX="321.0" layoutY="292.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Stundet Registration" textAlignment="CENTER">
+      <Text fill="WHITE" layoutX="321.0" layoutY="292.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Student Registration" textAlignment="CENTER">
          <font>
             <Font name="Bodoni MT Bold" size="19.0" />
          </font>
